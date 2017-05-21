@@ -1,5 +1,5 @@
 from PyPDF2 import PdfFileReader, PdfFileWriter
-import StringIO
+import io
 from reportlab.lib.pagesizes import letter, legal
 from reportlab.pdfgen import canvas
 
@@ -19,7 +19,7 @@ class PdfEditor(object):
         '''
         super(PdfEditor, self).__init__()
         self.pdf = PdfFileReader(filename).getPage(0)
-        self.content = StringIO.StringIO()
+        self.content = io.StringIO()
         self.parser = canvas.Canvas(self.content, pagesize=(letter if pageSize == 'letter' else legal))
 
     def drawString(self, x, y, content):
